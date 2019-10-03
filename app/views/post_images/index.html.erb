@@ -13,6 +13,11 @@
                       <%= image_tag post_image.image.url %>
                     <% end %>
                   </div>
+                  <div class="block-content">
+                    <% post_image.tags.each do |tag| %>
+                      <strong><%= tag.name %></strong>
+                    <% end %>
+                  </div>
                 </div>
                 <div class="block-content">
                   <%= image_tag post_image.user.profile_image.url, class: "img-circle pull-left profile-thumb" %>
