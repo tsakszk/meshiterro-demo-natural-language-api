@@ -17,9 +17,6 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: <%= ENV.fetch('DB_USERNAME', 'user') %>
-  password: <%= ENV.fetch('DB_PASSWORD', 'password') %>
-  host: <%= ENV.fetch('DB_HOST', 'db') %>
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -82,4 +79,6 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  database: meshiterro-demo_production
+  username: meshiterro-demo
+  password: <%= ENV['MERCURYZ_DATABASE_PASSWORD'] %>
