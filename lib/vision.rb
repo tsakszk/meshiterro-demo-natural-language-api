@@ -8,13 +8,13 @@ module Vision
       api_url = "https://vision.googleapis.com/v1/images:annotate?key=#{ENV['GOOGLE_VISION_API_KEY']}"
 
       # 画像をbase64にエンコード
-      base64_image = Base64.strict_encode64(File.new(image_file, 'rb').read)
+      # base64_image = Base64.strict_encode64(File.new(image_file, 'rb').read)
 
       # APIリクエスト用のJSONパラメータ
       params = {
         requests: [{
           image: {
-            content: base64_image
+            content: image_file
           },
           features: [
             {
