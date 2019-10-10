@@ -11,7 +11,7 @@ class PostImagesController < ApplicationController
       tags.each do |tag|
         @post_image.tags.create(name: tag)
       end
-      redirect_to post_images_path
+      redirect_to post_image_path(@post_image)
     else
       render :new
     end
@@ -32,7 +32,7 @@ class PostImagesController < ApplicationController
     redirect_to post_images_path
   end
 
-  private
+ private
 
   def post_image_params
     params.require(:post_image).permit(:shop_name, :image, :caption)

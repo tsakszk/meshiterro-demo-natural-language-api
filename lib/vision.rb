@@ -6,9 +6,14 @@ module Vision
   class << self
     def get_image_data(image_file)
       api_url = "https://vision.googleapis.com/v1/images:annotate?key=#{ENV['GOOGLE_VISION_API_KEY']}"
+      # api_url = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAIKk4xygMao3E3mGBLpkfHz0AO4BEB1SM"
 
       # 画像をbase64にエンコード
-      base64_image = Base64.encode64(open(image_file).read)
+      if Rails.env.production?
+        base64_image = Base64.encode64(open(image_file).read)
+      else
+        base64_image = Base64.encode64(open("#{Rails.root}/public#{image_file}").read)
+      end
 
       # APIリクエスト用のJSONパラメータ
       params = {
@@ -39,7 +44,7 @@ module Vision
       response = https.request(request, params)
 
       # APIレスポンス出力
-      JSON.parse(response.body)['responses'][0]['labelAnnotations'].pluck('description').take(2)
+      JSON.parse(response.body)['responses'][0]['labelAnnotations'].pluck('description').take(3)
     end
   end
 end
