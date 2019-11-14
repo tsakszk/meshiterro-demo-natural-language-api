@@ -7,10 +7,6 @@ class PostImagesController < ApplicationController
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
     if @post_image.save
-      tags = Vision.get_image_data(@post_image.image.url)
-      tags.each do |tag|
-        @post_image.tags.create(name: tag)
-      end
       redirect_to post_image_path(@post_image)
     else
       render :new
