@@ -66,7 +66,7 @@
                   <div class="comment-body bb">
                     <div class="comment-avatar">
                       <div class="avatar">
-                        <%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+                        <%= image_tag post_comment.user.profile_image.url, class: "img-circle pull-left profile-img" %>
                       </div>
                     </div>
                     <div class="comment-text">
